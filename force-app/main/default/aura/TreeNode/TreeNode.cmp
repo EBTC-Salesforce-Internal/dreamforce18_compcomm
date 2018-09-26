@@ -1,0 +1,19 @@
+<aura:component>
+    <aura:attribute name="nodeName" type="String"/>
+    <aura:attribute name="childNodes" type="Object[]" default="[]"/>
+    <aura:attribute name="isExpanded" type="Boolean" default="false"/>
+
+    <aura:registerEvent name="collapseTree" type="c:collapseTreeEvt"/>
+    <aura:handler event="c:collapseTreeEvt" phase="bubble" action="{!c.stopPropagation}"/>
+    <aura:handler event="c:collapseTreeEvt" action="{!c.collapseNode}"/>
+
+    <div onclick="{!c.toggleExpanded}">
+        <div>{!v.nodeName}</div>
+        <ul class="{!v.isExpanded ? 'slds-show' : 'slds-hide'}">
+            <aura:iteration items="{!v.childNodes}" var="node">
+                <c:TreeNode nodeName="{!node.Name}" childNodes="{!node.childNodes}"/>
+            </aura:iteration>
+        </ul>
+    </div>
+
+</aura:component>	

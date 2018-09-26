@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="selectedId" type="String"/>
+
+    <lightning:card title="Lookup">
+        <aura:set attribute="actions">
+            <lightning:button label="Clear" onclick="{!c.clear}"></lightning:button>
+        </aura:set>
+
+        <p>The selected id is {!v.selectedId}</p>
+        
+        <c:EB_DynamicLookup label="Account Lookup" name="search" aura:id="lookup"
+            objectTypes="Account" 
+            objectFields="{'Account':['Id','Name','ShippingStreet','ShippingCity','ShippingState','ShippingPostalCode','ShippingCountry']}" 
+            displayFields="['Dealer_Code__c','BillingCity','BillingStateCode']" 
+            value="{!v.selectedId}"/>
+    </lightning:card>
+
+    <lightning:card title="Tree Node">
+        <c:TreeNode nodeName="root" childNodes="[{'Name':'A','childNodes':[{'Name':'1','childNodes':[{'Name':'a','childNodes':[{'Name':'i','childNodes':[]},{'Name':'ii','childNodes':[]},{'Name':'iii','childNodes':[]}]},{'Name':'b','childNodes':[]},{'Name':'c','childNodes':[]}]},{'Name':'2','childNodes':[]}]},{'Name':'B','childNodes':[]}]"/>
+    </lightning:card>
+</aura:component>	

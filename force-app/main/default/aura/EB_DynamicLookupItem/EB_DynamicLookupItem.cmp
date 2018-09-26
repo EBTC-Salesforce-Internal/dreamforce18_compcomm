@@ -1,0 +1,25 @@
+<aura:component >
+	<aura:attribute name="item" type="Object"/>
+	<aura:attribute name="nameField" type="String" default="Name"/>
+	<aura:attribute name="nameValue" type="String" default=""/>
+	<aura:attribute name="displayFields" type="String[]" default="[]"/>
+	<aura:attribute name="displayValue" type="String" default=""/>
+	<aura:attribute name="isFocused" type="Boolean" default="false"/>
+	
+	<aura:registerEvent name="itemSelected" type="c:EB_DynamicLookupSelectedEvt"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+	<li role="presentation" onclick="{!c.select}"  >
+		<span class="slds-lookup__item-action slds-media">
+			<div class="slds-media__body">
+				<div class="slds-lookup__result-text" >
+					{!v.nameValue}
+				</div>
+				<div class="slds-lookup__result-meta" >
+					{!v.displayValue}
+				</div>
+			</div>
+		</span>
+	</li>
+</aura:component>

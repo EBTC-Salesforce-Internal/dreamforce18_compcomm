@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Fired when an item is selected">
+    <aura:attribute name="fieldName" type="String"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="record" type="Object"/>
+</aura:event>

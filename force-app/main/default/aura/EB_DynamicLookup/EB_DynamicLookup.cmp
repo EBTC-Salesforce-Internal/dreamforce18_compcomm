@@ -1,0 +1,52 @@
+<aura:component controller="EB_DynamicLookupController">
+	<aura:dependency resource="c:EB_DynamicLookupItem" />
+
+	<!-- The Id value of the lookup -->
+	<aura:attribute type="String" name="value" />
+
+	<!-- Input Attributes and Controls -->
+	<aura:attribute type="String" name="label" />
+	<aura:attribute type="String" name="name" />
+	<aura:attribute type="Boolean" name="disabled" default="false" />
+	
+	<!-- Search and result data -->
+	<aura:attribute type="String" name="searchString" />
+	<aura:attribute type="SObject[]" name="results" />
+
+	<!-- Lookup Result Element Data -->
+	<aura:attribute type="String" name="nameField" default="Name" />
+	<aura:attribute type="String[]" name="displayFields" default="[]" />
+	
+	<!-- Lookup Result Element Display -->
+	<aura:attribute type="Integer" name="focused" />
+	<aura:attribute type="Boolean" name="active" default="false" />
+	
+	<!-- Search Parameters -->
+	<aura:attribute type="String[]" name="objectTypes" />
+	<aura:attribute type="Map" name="objectFields" default="{}" />
+	<aura:attribute type="Map" name="objectFilters" default="{}" />
+	
+	<!-- Search Feature Attributes:  -->
+	<aura:attribute type="Decimal" name="minCharacters" default="2" />
+	<aura:attribute type="Integer" name="timer" />
+	
+	<aura:handler name="itemSelected" event="c:EB_DynamicLookupSelectedEvt" action="{!c.select}" />
+
+	<aura:method name="reset" action="{!c.reset}" access="GLOBAL" />
+	<aura:method name="focus" action="{!c.focus}" access="GLOBAL" />
+
+	<div class="{!'slds-form-element slds-lookup ' + if(v.active, 'slds-is-open', '')}" data-select="single">
+		<div class="slds-form-element__control">
+			<div class="slds-input-has-icon slds-input-has-icon_right">
+				<lightning:input aura:id="searchInput" label="{!v.label}" type="search" value="{!v.searchString}" onchange="{!c.executeSearch}" onblur="{!c.setInactive}" disabled="{!v.disabled}" />
+			</div>
+		</div>
+		<div class="slds-lookup__menu">
+			<ul class="slds-lookup__list">
+				<aura:iteration items="{!v.results}" var="item" indexVar="i">
+					<c:EB_DynamicLookupItem item="{#item}" nameField="{#v.nameField}" displayFields="{#v.displayFields}" isFocused="{!v.focused == i}" />
+				</aura:iteration>
+			</ul>
+		</div>
+	</div>
+</aura:component>
