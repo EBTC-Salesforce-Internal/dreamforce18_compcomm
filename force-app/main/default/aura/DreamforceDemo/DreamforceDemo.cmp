@@ -6,16 +6,20 @@
             <lightning:button label="Clear" onclick="{!c.clear}"></lightning:button>
         </aura:set>
 
-        <p>The selected id is {!v.selectedId}</p>
-        
-        <c:EB_DynamicLookup label="Account Lookup" name="search" aura:id="lookup"
-            objectTypes="Account" 
-            objectFields="{'Account':['Id','Name','ShippingStreet','ShippingCity','ShippingState','ShippingPostalCode','ShippingCountry']}" 
-            displayFields="['Dealer_Code__c','BillingCity','BillingStateCode']" 
-            value="{!v.selectedId}"/>
+        <div class="slds-m-around_medium">
+            <p>The selected id is {!v.selectedId}</p>
+            
+            <c:EB_DynamicLookup label="Account Lookup" name="search" aura:id="lookup"
+                objectTypes="Account" 
+                objectFields="{'Account':['Id','Name','ShippingStreet','ShippingCity','ShippingState','ShippingPostalCode','ShippingCountry']}" 
+                displayFields="['Dealer_Code__c','BillingCity','BillingStateCode']" 
+                value="{!v.selectedId}"/>
+        </div>
     </lightning:card>
 
     <lightning:card title="Tree Node">
-        <c:TreeNode nodeName="root" childNodes="[{'Name':'A','childNodes':[{'Name':'1','childNodes':[{'Name':'a','childNodes':[{'Name':'i','childNodes':[]},{'Name':'ii','childNodes':[]},{'Name':'iii','childNodes':[]}]},{'Name':'b','childNodes':[]},{'Name':'c','childNodes':[]}]},{'Name':'2','childNodes':[]}]},{'Name':'B','childNodes':[]}]"/>
-    </lightning:card>
-</aura:component>	
+        <div class="slds-m-around_medium">
+            <c:TreeNode nodeName="ROOT" childNodes="[{'Name':'A','childNodes':[{'Name':'1','childNodes':[{'Name':'a','childNodes':[{'Name':'i','childNodes':[]},{'Name':'ii','childNodes':[]},{'Name':'iii','childNodes':[]}]},{'Name':'b','childNodes':[]},{'Name':'c','childNodes':[]}]},{'Name':'2','childNodes':[]}]},{'Name':'B','childNodes':[]}]"/>
+        </div>
+    </lightning:card> 
+</aura:component>

@@ -7,13 +7,13 @@
     <aura:handler event="c:collapseTreeEvt" phase="bubble" action="{!c.stopPropagation}"/>
     <aura:handler event="c:collapseTreeEvt" action="{!c.collapseNode}"/>
 
-    <div onclick="{!c.toggleExpanded}">
-        <div>{!v.nodeName}</div>
-        <ul class="{!v.isExpanded ? 'slds-show' : 'slds-hide'}">
+    <div class="slds-m-vertical_small" onclick="{!c.toggleExpanded}">
+        <div><lightning:icon iconName="{!v.isExpanded ? 'utility:down' : 'utility:right'}" size="x-small"/>{!v.nodeName}</div>
+        <ul class="{!v.isExpanded ? 'slds-show slds-m-horizontal_medium' : 'slds-hide'}">
             <aura:iteration items="{!v.childNodes}" var="node">
                 <c:TreeNode nodeName="{!node.Name}" childNodes="{!node.childNodes}"/>
             </aura:iteration>
         </ul>
     </div>
 
-</aura:component>	
+</aura:component>
